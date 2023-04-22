@@ -1,0 +1,1 @@
+Bookr is a web-based booking and appointment setting application that helps small business owners collect and handle bookings online. It helps them guide customers online that need their services to their physical businesses. It helps local businesses stand out within their community online, attract more customers, and make more money.
