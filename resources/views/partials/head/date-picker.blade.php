@@ -1,13 +1,6 @@
 
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Bookr</title>
-        <meta name="description" content="">
-        <meta name="keywords" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        @include("partials.head.about")
 
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
         
@@ -20,5 +13,6 @@
         <link rel="stylesheet" href="plugins/jquery-minicolors/jquery.minicolors.css">
         <link rel="stylesheet" href="plugins/datedropper/datedropper.min.css">
         <link rel="stylesheet" href="dist/css/theme.min.css">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>

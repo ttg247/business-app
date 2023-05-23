@@ -23,9 +23,9 @@
                         @endif
                         <div class="authentication-form mx-auto">
                             <div class="logo-centered">
-                                <a href="{{ route('dashboard') }}"><img src="{{ asset('/src/img/brand.svg') }}" alt=""></a>
+                                <a href="{{ route('dashboard') }}"><img src="{{ asset('img/black_logo.png') }}" alt="" class="logo-auth"></a>
                             </div>
-                            <h3>Sign In to Bookr</h3>
+                            <h3>Sign into Terra Sunny</h3>
                             <p>Happy to see you again!</p>
                             <form action="{{ route('login') }}" method="POST">
                                 @csrf

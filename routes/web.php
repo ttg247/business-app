@@ -33,7 +33,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     
-    Route::get('/', 'App\Http\Controllers\BusinessController@dashboard')->name('dashboard');
+    Route::get('/', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
     Route::resource('/customers', App\Http\Controllers\CustomerController::class)->names([
         'index' => 'customers.index',

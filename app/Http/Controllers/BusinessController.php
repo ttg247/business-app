@@ -117,7 +117,7 @@ class BusinessController extends Controller
     public function dashboard()
     {
         // retrieve the business with the given ID
-        $business = Business::where('users_id', Auth::id())->firstOrFail();
+        $business = Business::where('users_id', Auth::id())->findOrFail();
 
         // count the number of customers for the business
         $customerCount = Customer::where('business_id', $business->id)->count();

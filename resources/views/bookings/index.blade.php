@@ -47,7 +47,7 @@
                                                             <span class="custom-control-label">&nbsp;</span>
                                                         </label>
                                                     </td>
-                                                    <td><img src="{{ asset('img/users/1.jpg') }}" class="table-user-thumb" alt=""></td>
+                                                    <td> <span class="avatar">TG</span> </td>
                                                     <td>{{ $booking->client->name }}</td>
                                                     <td>{{ $booking->client->email }}</td>
                                                     <td>{{ $booking->client->phone }}</td>

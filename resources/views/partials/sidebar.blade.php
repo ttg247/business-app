@@ -1,10 +1,10 @@
 <div class="app-sidebar colored">
     <div class="sidebar-header">
         <a class="header-brand" href="index.php">
-            <!--<div class="logo-img">
-                <img src="#" class="header-brand-img" alt=""> 
-            </div>-->
-            <span class="text">Bookr</span>
+            <div class="logo-img">
+                <img src="img/white_logo.png" class="header-brand-img" alt="" style="width: 50px;"> 
+            </div>
+            <span class="text pl-3">Terra Sunny</span>
         </a>
         <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
     </div>
