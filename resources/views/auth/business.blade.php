@@ -20,26 +20,22 @@
                             <div class="logo-centered">
                                 <a href="{{ route('dashboard') }}"><img class="logo-auth" src="{{ asset('img/black_logo.png') }}" alt=""></a>
                             </div>
-                            <h3>New to Terra Sunny</h3>
-                            <p>Join us today! It takes only few steps</p>
+                            <h3>Welcome to Terra Sunny</h3>
+                            <p>Let's create your new business. It only takes a few steps</p>
                             <form action="{{ route('register') }}" method="POST">
                                 @csrf
                                 @method('post')
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Enter your full name" required="" name="name">
+                                    <input type="text" class="form-control" placeholder="Enter your business name" required="" name="name">
                                     <i class="ik ik-user"></i>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Enter your email" required="" name="email">
+                                    <input type="text" class="form-control" placeholder="Enter your business email" required="" name="email">
                                     <i class="ik ik-mail"></i>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Enter your password" required="" name="password">
-                                    <i class="ik ik-lock"></i>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Confirm your password" name="password_confirmation" required autocomplete="new-password">
-                                    <i class="ik ik-eye-off"></i>
+                                    <input type="text" class="form-control" placeholder="Enter your business phone number" required="" name="phone">
+                                    <i class="ik ik-phone"></i>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 text-left">

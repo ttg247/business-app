@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class ServiceController extends Controller
 {
     public function index()
-    {
-        $services = Service::where('business_id', Auth::id())->get();
+    {   $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
+        $services = Service::where('business_id', $user_business_id)->get();
         return view('services.index', compact('services'));
     }
 
@@ -28,7 +30,9 @@ class ServiceController extends Controller
         ]);
 
         $service = new Service();
-        $service->business_id = Auth::id();
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
+        $service->business_id = $user_business_id;
         $service->title = $validatedData['title'];
         $service->description = $validatedData['description'];
         $service->price = $validatedData['price'];
@@ -39,8 +43,10 @@ class ServiceController extends Controller
 
     public function edit($id)
     {
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
         $service = Service::findOrFail($id);
-        if ($service->business_id !== Auth::id()) {
+        if ($service->business_id !== $user_business_id) {
             return redirect('/services')->with('error', 'Unauthorized action');
         }
         return view('services.edit', compact('service'));
@@ -54,8 +60,10 @@ class ServiceController extends Controller
             'price' => 'required|numeric',
         ]);
 
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
         $service = Service::findOrFail($id);
-        if ($service->business_id !== Auth::id()) {
+        if ($service->business_id !== $user_business_id) {
             return redirect('/services')->with('error', 'Unauthorized action');
         }
 
@@ -70,7 +78,9 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         $service = Service::findOrFail($id);
-        if ($service->business_id !== Auth::id()) {
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
+        if ($service->business_id !== $user_business_id) {
             return redirect('/services')->with('error', 'Unauthorized action');
         }
         $service->delete();

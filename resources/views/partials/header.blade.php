@@ -12,6 +12,9 @@
                 </div>
             </div>
             <div class="top-menu d-flex align-items-center">
+            <a class="nav-link" href="{{ url('https://terrasunny.com/sites/liverpool-cleaning') }}" target="blank">
+                    <i class="ik ik-eye"></i>
+                </a>
                 <div class="dropdown">
                     <button class="nav-link" id="userDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="ik ik-user"></i>

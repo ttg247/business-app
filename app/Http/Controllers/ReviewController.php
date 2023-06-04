@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Business;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
@@ -29,10 +30,10 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::all();
-        $clientId = Auth::id();
-        $businessId = Business::where('users_id', $clientId)
-                    ->value('id');
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;         
+        $reviews = Review::where('business_id', $user_business_id)->get();
+        $businessId = Business::where('id', $user_business_id)->value('id');
         return view('reviews.index', compact('businessId', 'reviews'));
     }
 
@@ -56,14 +57,15 @@ class ReviewController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
             'message' => 'required',
         ]);
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
 
         $review = new Review;
-        $review->business_id = Auth::id();
+        $review->business_id = $user_business_id;
         $review->name = $validatedData['name'];
-        $review->email = $validatedData['email'];
+        $review->email = $request->input('email');
         $review->message = $validatedData['message'];
         $review->approved = 1;
         $review->save();
@@ -95,13 +97,12 @@ class ReviewController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
             'message' => 'required',
         ]);
 
         $review = Review::find($id);
         $review->name = $validatedData['name'];
-        $review->email = $validatedData['email'];
+        $review->email = $request->input('email');
         $review->message = $validatedData['message'];
         $review->save();
 
@@ -144,7 +145,9 @@ class ReviewController extends Controller
      */
     public function pending()
     {
-        $reviews = Review::where('business_id', auth()->id())
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
+        $reviews = Review::where('business_id', $user_business_id)
                         ->where('approved', false)
                         ->get();
         

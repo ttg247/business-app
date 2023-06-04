@@ -43,11 +43,11 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <label for="example-name">Start Time</label>
-                                                        <input class="form-control" type="time"   name="tuesday_start_time" value="{{ $workhours->tuesday_start_time ?? '' }}"/>
+                                                        <input class="form-control" type="time" name="tuesday_start_time" value="{{ $workhours->tuesday_start_time ?? '' }}"/>
                                                     </div>
                                                     <div class="col">
                                                         <label for="example-name">End Time</label>
-                                                        <input class="form-control" type="time"  name="tuesday_end_time"  value="{{ $workhours->tuesday_end_time ?? '' }}"/>
+                                                        <input class="form-control" type="time" name="tuesday_end_time"  value="{{ $workhours->tuesday_end_time ?? '' }}"/>
                                                     </div>
                                                 </div>
                                             </div>

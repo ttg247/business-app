@@ -7,17 +7,31 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use App\Models\Business;
 
 
 class UserController extends Controller
 {
+    //authenticate customer invite link and return the business
+    public function authenticate_invite_link(Request $request){
+        $invite_link = $request -> input('invite_link');
+        $customer_business = Business::where('users_link', $invite_link)->first();
+        
+        if ($customer_business !== null){
+            
+            return redirect('/create-business');
+        }
+        
+        return false;
+    }
+
     //register user
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
+            'password' => 'required|string|confirmed|min:8'
         ]);
 
         if ($validator->fails()) {
@@ -32,10 +46,16 @@ class UserController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
+            'business_id' => $request->input('business'),
         ]);
 
+        
         // Log in the new user
         auth()->login($user);
+
+        $business = Business::find($request->input('business'));
+        $business->users_id = Auth::id();
+        $business->save();
 
         // Redirect to the home page or some other destination
         return redirect('/');

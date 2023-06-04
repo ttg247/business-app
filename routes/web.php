@@ -17,7 +17,18 @@ Route::get('/login', function () {
 })->name('login');
 Route::post('/login', [App\Http\Controllers\UserController::class, 'login'])->name('login');
 Route::post('/register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
+Route::post('/create-business', [App\Http\Controllers\BusinessController::class, 'store'])->name('business');
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+
+//invitation link routes
+Route::post('/invite', [App\Http\Controllers\InvitationController::class, 'check'])->name('invite_check');
+Route::get('/invite', function () {
+    return view('auth.invite');
+})->name('invite');
+
+Route::get('/create-business', function () {
+    return view('auth.business');
+})->name('business');
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -27,6 +38,7 @@ Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->name('forgot-password');
 
+//secure views
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

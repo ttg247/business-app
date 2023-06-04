@@ -47,9 +47,9 @@
                                                         </label>
                                                     </td>
                                                     <td>{{$loop->iteration}}</td>
-                                                    <td>{{$review->name}}</td>
-                                                    <td>{{$review->message}}</td>
-                                                    <td>{{$review->created_at->format('d-m-Y')}}</td>
+                                                    <td>{{$review->name ?? ''}}</td>
+                                                    <td>{{$review->message ?? ''}}</td>
+                                                    <td>{{$review->created_at->format('d-m-Y') ?? ''}}</td>
                                                     <td>
                                                         <a href="{{ url('reviews/'.$review->id.'/edit') }}"><i class="ik ik-edit f-16 mr-12 text-blue"></i></a>
                                                         <a href="{{ url('reviews/delete/'.$review->id) }}"><i class="ik ik-trash-2 f-16 text-red"></i></a>

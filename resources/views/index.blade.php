@@ -60,7 +60,7 @@
                                     <div class="widget-body">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="state">
-                                                <h6>Upcoming Appointments</h6>
+                                                <h6>Bookings</h6>
                                                 <h2>{{ $bookingCount }}</h2>
                                             </div>
                                             <div class="icon">

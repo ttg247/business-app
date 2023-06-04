@@ -46,8 +46,8 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="text-center"> 
-                                            <h4 class="card-title mt-10">{{ $business->name }}</h4>
-                                            <p class="card-subtitle">{{ $business->summary }}</p>
+                                            <h4 class="card-title mt-10">{{ $business ->name ?? '' }}</h4>
+                                            <p class="card-subtitle">{{ $business ->summary ?? '' }}</p>
                                         </div>
                                     </div>
                                     <hr class="mb-0"> 
@@ -63,7 +63,7 @@
                                         <br/>
                                         <a href="{{ $business->facebook ?? '' }}" target="_blank" class="btn btn-icon btn-facebook"><i class="fab fa-facebook-f"></i></a>
                                         <a href="{{ $business->twitter ?? '' }}" target="_blank" class="btn btn-icon btn-twitter"><i class="fab fa-twitter"></i></a>
-                                        <a href="{{ url($business->instagram) ?? '' }}" target="_blank" class="btn btn-icon btn-instagram"><i class="fab fa-instagram"></i></a>
+                                        <a href="{{ $business->instagram ?? '' }}" target="_blank" class="btn btn-icon btn-instagram"><i class="fab fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>

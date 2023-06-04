@@ -22,7 +22,7 @@ class Business extends Model
         'users_id',
     ];
 
-    // Define the relationship between Business and User models
+    // Defines the relationship between the Business and User models
     public function user()
     {
         return $this->belongsTo(User::class);

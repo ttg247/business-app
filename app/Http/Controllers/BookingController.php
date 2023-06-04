@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Client;
+use App\Models\User;
 use App\Models\Business;
 
 class BookingController extends Controller
@@ -14,7 +15,9 @@ class BookingController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $bookings = Booking::where('client_id', $id)->get();
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
+        $bookings = Booking::where('business_id', $user_business_id)->get();
         return view('bookings.index', compact('bookings'));
     }
 

@@ -46,9 +46,9 @@
                                 <div class="card">
                                     <div class="card-header"><h3>Use the form below to create new reviews</h3></div>
                                     <div class="card-body">
-                                        <form method="POST" action="{{ route('reviews.store') }}" class="forms-sample">
+                                        <form method="POST" action="{{ route('reviews.update', $review -> id) }}" class="forms-sample">
                                             @csrf
-                                            @method('post')
+                                            @method('put')
                                             <div class="row">
                                                 
                                                 <div class="form-group col-lg">
@@ -58,7 +58,7 @@
                                                 
                                                 <div class="form-group col-lg">
                                                     <label for="customer-email">Email</label>
-                                                    <input type="text" class="form-control" id="customer-email" name="email" value="{{ $review->email }}" placeholder="Enter customer email">
+                                                    <input type="text" class="form-control" id="customer-email" name="email" value="{{ $review->email ?? '' }}" placeholder="Enter customer email">
                                                 </div>
                                             </div>
 
@@ -67,7 +67,7 @@
                                                 <textarea class="form-control" id="review_message" name="message" rows="4">{{ $review->message }}</textarea>
                                             </div>
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                            <button class="btn btn-light">Cancel</button>
+                                            <a href="{{ route('reviews') }}" class="btn btn-light">Cancel</a>
                                         </form>
                                     </div>
                                 </div>

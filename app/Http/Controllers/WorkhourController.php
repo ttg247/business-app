@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Workhour;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class WorkhourController extends Controller
@@ -11,7 +12,15 @@ class WorkhourController extends Controller
     public function index()
     {
         // Retrieve the workhours for the authenticated business
-        $workhours = Workhour::where('business_id', Auth::id())->firstOrFail();        
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
+        $workhours = Workhour::where('business_id', $user_business_id)->first();        
+        //handle if workhours does not exist
+        if (!$workhours) {
+            $workhour = new Workhour;
+            $workhour -> business_id = $user_business_id;
+            $workhour -> save();
+        }
         // Return the workhours view with the data
         return view('business.workhours', ['workhours' => $workhours]);
     }
@@ -19,7 +28,9 @@ class WorkhourController extends Controller
     public function update(Request $request)
     {
         // Retrieve the workhours for the authenticated business
-        $workhours = Workhour::where('business_id', Auth::id())->firstOrFail();
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
+        $workhours = Workhour::where('business_id', $user_business_id)->firstOrFail();
 
         // Update the workhours with the form data
         $workhours->update([
@@ -46,7 +57,9 @@ class WorkhourController extends Controller
     public function store(Request $request)
     {
         // Check if the workhours for the business already exists
-        $workhours = Workhour::where('business_id', Auth::id())->first();
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
+        $workhours = Workhour::where('business_id', $user_business_id)->first();
 
         if ($workhours) {
             // If workhours for the business exist, update them

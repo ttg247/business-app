@@ -25,7 +25,8 @@
                             <form action="{{ route('register') }}" method="POST">
                                 @csrf
                                 @method('post')
-                                <div class="form-group">
+                                <input type="hidden" name="business" value="{{ Request::get('business') }}">
+                                <div class="form-group">                                    
                                     <input type="text" class="form-control" placeholder="Enter your full name" required="" name="name">
                                     <i class="ik ik-user"></i>
                                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Business;
+use App\Models\User;
 use App\Models\Service;
 use App\Models\Customer;
 use App\Models\Review;
@@ -20,7 +21,9 @@ class BusinessController extends Controller
     public function index()
     {
         // Retrieve the workhours for the authenticated business
-        $business = Business::where('users_id', Auth::id())->firstOrFail();        
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
+        $business = Business::where('id', $user_business_id)->firstOrFail();        
         $services = Service::where('business_id', $business->id)->get();        
         return view('business.index', compact('business', 'services'));
     }
@@ -85,7 +88,10 @@ class BusinessController extends Controller
     public function update(Request $request)
     {
         
-        $business = Business::where('users_id', Auth::id())->firstOrFail();
+        // Retrieve the workhours for the authenticated business
+        $user = User::where('id', Auth::id())->firstOrFail();        
+        $user_business_id = $user -> business_id;
+        $business = Business::where('id', $user_business_id)->firstOrFail(); 
 
         $business->update([
             $business->name = $request->input('name'),
@@ -112,29 +118,6 @@ class BusinessController extends Controller
     {
         $business->delete();
         return redirect()->route('business.index')->with('success', 'Business deleted successfully!');
-    }
-
-    public function dashboard()
-    {
-        // retrieve the business with the given ID
-        $business = Business::where('users_id', Auth::id())->findOrFail();
-
-        // count the number of customers for the business
-        $customerCount = Customer::where('business_id', $business->id)->count();
-
-        // count the number of reviews for the business
-        $reviewCount = Review::where('business_id', $business->id)->count();
-
-        // count the number of bookings for the business
-        $bookingCount = Booking::where('business_id', $business->id)->count();
-
-        // return the data to the view
-        return view('index', [
-            'business' => $business,
-            'customerCount' => $customerCount,
-            'reviewCount' => $reviewCount,
-            'bookingCount' => $bookingCount
-        ]);
     }
 
 }

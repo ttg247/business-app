@@ -2,7 +2,7 @@
     <div class="sidebar-header">
         <a class="header-brand" href="index.php">
             <div class="logo-img">
-                <img src="img/white_logo.png" class="header-brand-img" alt="" style="width: 50px;"> 
+                <img src="{{ asset('img/white_logo.png') }}" class="header-brand-img" alt="" style="width: 50px;"> 
             </div>
             <span class="text pl-3">Terra Sunny</span>
         </a>

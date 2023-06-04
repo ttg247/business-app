@@ -67,7 +67,7 @@
                                                 <textarea class="form-control" id="review_message" name="message" rows="4"></textarea>
                                             </div>
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                            <button class="btn btn-light">Cancel</button>
+                                            <a href="{{ route('reviews') }}" class="btn btn-light">Cancel</a>
                                         </form>
                                     </div>
                                 </div>

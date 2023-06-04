@@ -27,35 +27,16 @@
                             </div>
                             <h3>Sign into Terra Sunny</h3>
                             <p>Happy to see you again!</p>
-                            <form action="{{ route('login') }}" method="POST">
+                            <form action="{{ route('invite_check') }}" method="POST">
                                 @csrf
                                 @method('post')
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Enter your email" required="" name="email" value="{{ __('Email') }}">
-                                    <i class="ik ik-user"></i>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Enter your password" required="" name="password" value="{{ __('Password') }}">
-                                    <i class="ik ik-lock"></i>
-                                </div>
-                                <div class="row">
-                                    <div class="col text-left">
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="item_checkbox" name="item_checkbox" value="{{ __('Remember me') }}">
-                                            <span class="custom-control-label">&nbsp;Remember Me</span>
-                                        </label>
-                                    </div>
-                                    <div class="col text-right">
-                                        <a href="{{ route('forgot-password') }}">Forgot Password ?</a>
-                                    </div>
+                                    <input type="text" class="form-control" placeholder="Enter your invite code" required="" name="invite_code">    
                                 </div>
                                 <div class="sign-btn text-center">
-                                    <button type="submit" class="btn btn-theme">Sign In</button>
+                                    <button type="submit" class="btn btn-theme">Use Code</button>
                                 </div>
                             </form>
-                            <div class="register">
-                                <p>Don't have an account? <a href="{{ route('invite_check') }}">Create an account</a></p>
-                            </div>
                         </div>
                     </div>
                 </div>
