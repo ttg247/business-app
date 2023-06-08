@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//authentication routes
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
@@ -38,11 +40,11 @@ Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->name('forgot-password');
 
-//secure views
+//customer views
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
 ])->group(function () {
     
     Route::get('/', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
@@ -137,4 +139,9 @@ Route::middleware([
     Route::get('/profile', function () {
         return view('profile');
     });
+});
+
+//Admin Routes
+Route::middleware('role:admin')->group(function () {
+
 });
