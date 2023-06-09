@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\OpportunityController;
+use App\Http\Controllers\InteractionController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\NoteController;
+use App\Http\Controllers\AppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,5 +149,35 @@ Route::middleware([
 
 //Admin Routes
 Route::middleware('role:admin')->group(function () {
-
+    
+    // Contacts routes
+    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+    Route::get('/contacts/create', [ContactController::class, 'create'])->name('contacts.create');
+    Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
+    Route::get('/contacts/{id}', [ContactController::class, 'show'])->name('contacts.show');
+    Route::get('/contacts/{id}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
+    Route::put('/contacts/{id}', [ContactController::class, 'update'])->name('contacts.update');
+    Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
+    
+    // Opportunities routes
+    Route::get('/opportunities', [OpportunityController::class, 'index'])->name('opportunities.index');
+    // Define other routes for opportunities (create, store, show, edit, update, destroy) as needed
+    
+    // Interactions routes
+    Route::get('/interactions', [InteractionController::class, 'index'])->name('interactions.index');
+    // Define other routes for interactions (create, store, show, edit, update, destroy) as needed
+    
+    // Tasks routes
+    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+    // Define other routes for tasks (create, store, show, edit, update, destroy) as needed
+        
+    // Notes routes
+    Route::get('/notes', [NoteController::class, 'index'])->name('notes.index');
+    // Define other routes for notes (create, store, show, edit, update, destroy) as needed
+    
+    
+    // Appointment routes
+    Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+    // Define other routes for appointments (create, store, show, edit, update, destroy) as needed
+    
 });
