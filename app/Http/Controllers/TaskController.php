@@ -7,16 +7,21 @@ use App\Models\Task;
 
 class TaskController extends Controller
 {
+    public function menu()
+    {
+        return view('tasks.menu');
+    }
+
     public function index()
     {
-        $contacts = Task::all();
+        $taskss = Task::all();
 
-        return view('contacts.index', compact('contacts'));
+        return view('taskss.index', compact('taskss'));
     }
 
     public function create()
     {
-        return view('contacts.create');
+        return view('taskss.create');
     }
 
     public function store(Request $request)
@@ -27,23 +32,23 @@ class TaskController extends Controller
             'phone' => 'required',
         ]);
 
-        $contact = Task::create($validatedData);
+        $tasks = Task::create($validatedData);
 
-        return redirect()->route('contacts.show', $contact->id)->with('success', 'Contact created successfully.');
+        return redirect()->route('taskss.show', $tasks->id)->with('success', 'tasks created successfully.');
     }
 
     public function show($id)
     {
-        $contact = Task::findOrFail($id);
+        $tasks = Task::findOrFail($id);
 
-        return view('contacts.show', compact('contact'));
+        return view('taskss.show', compact('tasks'));
     }
 
     public function edit($id)
     {
-        $contact = Task::findOrFail($id);
+        $tasks = Task::findOrFail($id);
 
-        return view('contacts.edit', compact('contact'));
+        return view('taskss.edit', compact('tasks'));
     }
 
     public function update(Request $request, $id)
@@ -54,18 +59,18 @@ class TaskController extends Controller
             'phone' => 'required',
         ]);
 
-        $contact = Task::findOrFail($id);
-        $contact->update($validatedData);
+        $tasks = Task::findOrFail($id);
+        $tasks->update($validatedData);
 
-        return redirect()->route('contacts.show', $contact->id)->with('success', 'Contact updated successfully.');
+        return redirect()->route('taskss.show', $tasks->id)->with('success', 'tasks updated successfully.');
     }
 
     public function destroy($id)
     {
-        $contact = Task::findOrFail($id);
-        $contact->delete();
+        $tasks = Task::findOrFail($id);
+        $tasks->delete();
 
-        return redirect()->route('contacts.index')->with('success', 'Contact deleted successfully.');
+        return redirect()->route('taskss.index')->with('success', 'tasks deleted successfully.');
     }
 }
 

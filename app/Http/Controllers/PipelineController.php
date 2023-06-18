@@ -3,18 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contact;
+use App\Models\Opportunity;
 
-class ContactController extends Controller
+class PipelineController extends Controller
 {
-    public function menu()
-    {
-        return view('contacts.menu');
-    }
-
     public function index()
     {
-        $contacts = Contact::all();
+        $contacts = Opportunity::all();
 
         return view('contacts.index', compact('contacts'));
     }
@@ -32,21 +27,21 @@ class ContactController extends Controller
             'phone' => 'required',
         ]);
 
-        $contact = Contact::create($validatedData);
+        $contact = Opportunity::create($validatedData);
 
         return redirect()->route('contacts.show', $contact->id)->with('success', 'Contact created successfully.');
     }
 
     public function show($id)
     {
-        $contact = Contact::findOrFail($id);
+        $contact = Opportunity::findOrFail($id);
 
         return view('contacts.show', compact('contact'));
     }
 
     public function edit($id)
     {
-        $contact = Contact::findOrFail($id);
+        $contact = Opportunity::findOrFail($id);
 
         return view('contacts.edit', compact('contact'));
     }
@@ -59,7 +54,7 @@ class ContactController extends Controller
             'phone' => 'required',
         ]);
 
-        $contact = Contact::findOrFail($id);
+        $contact = Opportunity::findOrFail($id);
         $contact->update($validatedData);
 
         return redirect()->route('contacts.show', $contact->id)->with('success', 'Contact updated successfully.');
@@ -67,9 +62,11 @@ class ContactController extends Controller
 
     public function destroy($id)
     {
-        $contact = Contact::findOrFail($id);
+        $contact = Opportunity::findOrFail($id);
         $contact->delete();
 
         return redirect()->route('contacts.index')->with('success', 'Contact deleted successfully.');
     }
 }
+
+

@@ -7,16 +7,23 @@ use App\Models\Opportunity;
 
 class OpportunityController extends Controller
 {
+    public function menu()
+    {
+        $pipeline = Opportunity::all();
+
+        return view('opportunities.menu');
+    }
+
     public function index()
     {
-        $contacts = Opportunity::all();
+        $opportunities = Opportunity::all();
 
-        return view('contacts.index', compact('contacts'));
+        return view('opportunities.index', compact('opportunities'));
     }
 
     public function create()
     {
-        return view('contacts.create');
+        return view('opportunities.create');
     }
 
     public function store(Request $request)
@@ -27,23 +34,23 @@ class OpportunityController extends Controller
             'phone' => 'required',
         ]);
 
-        $contact = Opportunity::create($validatedData);
+        $deal = Opportunity::create($validatedData);
 
-        return redirect()->route('contacts.show', $contact->id)->with('success', 'Contact created successfully.');
+        return redirect()->route('opportunities.show', $deal->id)->with('success', 'deal created successfully.');
     }
 
     public function show($id)
     {
-        $contact = Opportunity::findOrFail($id);
+        $deal = Opportunity::findOrFail($id);
 
-        return view('contacts.show', compact('contact'));
+        return view('opportunities.show', compact('deal'));
     }
 
     public function edit($id)
     {
-        $contact = Opportunity::findOrFail($id);
+        $deal = Opportunity::findOrFail($id);
 
-        return view('contacts.edit', compact('contact'));
+        return view('opportunities.edit', compact('deal'));
     }
 
     public function update(Request $request, $id)
@@ -54,18 +61,36 @@ class OpportunityController extends Controller
             'phone' => 'required',
         ]);
 
-        $contact = Opportunity::findOrFail($id);
-        $contact->update($validatedData);
+        $deal = Opportunity::findOrFail($id);
+        $deal->update($validatedData);
 
-        return redirect()->route('contacts.show', $contact->id)->with('success', 'Contact updated successfully.');
+        return redirect()->route('opportunities.show', $deal->id)->with('success', 'deal updated successfully.');
     }
 
     public function destroy($id)
     {
-        $contact = Opportunity::findOrFail($id);
-        $contact->delete();
+        $deal = Opportunity::findOrFail($id);
+        $deal->delete();
 
-        return redirect()->route('contacts.index')->with('success', 'Contact deleted successfully.');
+        return redirect()->route('opportunities.index')->with('success', 'deal deleted successfully.');
+    }
+
+    //creates a new proposal
+    public function createProposal($id)
+    {
+
+    }
+
+    //creates a new offer
+    public function createOffer($id)
+    {
+
+    }
+
+    //close an existing deal
+    public function close($id)
+    {
+
     }
 }
 

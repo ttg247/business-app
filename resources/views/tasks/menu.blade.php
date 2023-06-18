@@ -22,8 +22,8 @@
                                     <div class="page-header-title">
                                         <i class="ik ik-users bg-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Customer Settings</h5>
-                                            <span>Manage customers for your business</span>
+                                            <h5>Task Settings</h5>
+                                            <span>Manage tasks for your business</span>
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +33,7 @@
                                             <li class="breadcrumb-item">
                                                 <a href="{{ route('dashboard' )}}"><i class="ik ik-home"></i></a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Customer Settings</li>
+                                            <li class="breadcrumb-item active" aria-current="page">task Manager</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -41,31 +41,31 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
+                            <div class="col-12">
+                                <div class="card">
                                     <div class="card-body">
-                                        <h6>Create New Customers</h6>
+                                        <h6>Create New tasks</h6>
                                         <p>Make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/create') }}" class="btn btn-primary text-right mr-2">Create</a>
+                                        <a href="{{ url('tasks/create') }}" class="btn btn-primary text-right mr-2">Create</a>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
+                            <div class="col-12">
+                                <div class="card">
                                     <div class="card-body">
-                                        <h6>Manage Existing Customers</h6>
+                                        <h6>Manage Existing tasks</h6>
                                         <p>View and make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/') }}" class="btn btn-primary text-right mr-2">Manage</a>
+                                        <a href="{{ url('tasks/') }}" class="btn btn-primary text-right mr-2">Manage</a>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
+                            <div class="col-12">
+                                <div class="card">
                                     <div class="card-body">
-                                        <h6>Import Customers</h6>
-                                        <p>Import customers in bulk.</p>
+                                        <h6>Import tasks</h6>
+                                        <p>Import tasks in bulk.</p>
                                         <a href="{{ url('#') }}" class="btn btn-secondary text-right mr-2">Upgrade Plan</a>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@
                                     <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
                                 </div>
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
+                                    <a href="#"><i class="ik ik-map-pin"></i><span>tasks</span></a>
                                 </div>
                                 <div class="app-item">
                                     <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>

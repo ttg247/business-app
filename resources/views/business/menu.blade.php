@@ -41,8 +41,8 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-12">
-                                <div class="card">
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
                                     <div class="card-body">
                                         <h6>Create New Service</h6>
                                         <p>Make changes to your name, email, phone number, and more </p>
@@ -51,8 +51,8 @@
                                 </div>
                             </div>
                             
-                            <div class="col-12">
-                                <div class="card">
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
                                     <div class="card-body">
                                         <h6>Manage Service</h6>
                                         <p>View and make changes to your name, email, phone number, and more </p>
@@ -61,8 +61,8 @@
                                 </div>
                             </div>
                             
-                            <div class="col-12">
-                                <div class="card">
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
                                     <div class="card-body">
                                         <h6>Manage Workhours</h6>
                                         <p>Approve new customer reviews and get them listed on your website</p>
@@ -71,8 +71,8 @@
                                 </div>
                             </div>
 
-                            <div class="col-12">
-                                <div class="card">
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
                                     <div class="card-body">
                                         <h6>Manage Business Preferences</h6>
                                         <p>View and make changes to your name, email, phone number, and more </p>

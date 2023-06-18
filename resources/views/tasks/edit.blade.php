@@ -14,16 +14,17 @@
                 @include("partials.sidebar")
 
                 <!-- page content -->
+                
                 <div class="main-content">
                     <div class="container-fluid">
                         <div class="page-header">
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="ik ik-users bg-blue"></i>
+                                        <i class="ik ik-file-text bg-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Customer Settings</h5>
-                                            <span>Manage customers for your business</span>
+                                            <h5>task Profile</h5>
+                                            <span>See your task's details, and view their order history</span>
                                         </div>
                                     </div>
                                 </div>
@@ -31,9 +32,12 @@
                                     <nav class="breadcrumb-container" aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item">
-                                                <a href="{{ route('dashboard' )}}"><i class="ik ik-home"></i></a>
+                                                <a href="{{ route('dashboard') }}"><i class="ik ik-home"></i></a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Customer Settings</li>
+                                            <li class="breadcrumb-item">
+                                                <a href="{{ route('tasks.index') }}">tasks</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">Profile</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -41,40 +45,57 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
+                            <div class="col-lg-4 col-md-5">
+                                <div class="card">
                                     <div class="card-body">
-                                        <h6>Create New Customers</h6>
-                                        <p>Make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/create') }}" class="btn btn-primary text-right mr-2">Create</a>
+                                        <div class="text-center"> 
+                                            <img src="{{ asset('/img/user.jpg') }}" class="rounded-circle" width="150" />
+                                            <h4 class="card-title mt-10">Terra Sunny</h4>
+                                            <p class="card-subtitle">Front End Developer</p>
+                                            <div class="row text-center justify-content-md-center">
+                                                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="ik ik-user"></i> <font class="font-medium">254</font></a></div>
+                                                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="ik ik-image"></i> <font class="font-medium">54</font></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-0"> 
+                                    <div class="card-body"> 
+                                        <small class="text-muted d-block">Email address </small>
+                                        <h6>email</h6> 
+                                        <small class="text-muted d-block pt-10">Phone</small>
+                                        <h6>(123) 456 7890</h6> 
+                                        <br/>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h6>Manage Existing Customers</h6>
-                                        <p>View and make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/') }}" class="btn btn-primary text-right mr-2">Manage</a>
+                            <div class="col-lg-8 col-md-7">
+                                <div class="card">
+                                    <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="pills-timeline-tab" data-toggle="pill" href="#current-month" role="tab" aria-controls="pills-timeline" aria-selected="true">History</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="current-month" role="tabpanel" aria-labelledby="pills-timeline-tab">
+                                            <div class="card-body">
+                                                <div class="profiletimeline mt-0">
+                                                    <div class="sl-item">
+                                                        <div class="sl-left"> <img src="{{ asset('img/users/1.jpg') }}" alt="user" class="rounded-circle" /> </div>
+                                                        <div class="sl-right">
+                                                            <div><a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
+                                                                <p>scheduled a <a href="javascript:void(0)">cleanup</a> for the 25th January, 2023</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h6>Import Customers</h6>
-                                        <p>Import customers in bulk.</p>
-                                        <a href="{{ url('#') }}" class="btn btn-secondary text-right mr-2">Upgrade Plan</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
                         </div>
                     </div>
                 </div>
-                
 
 
                 @include("partials.chat")
@@ -82,8 +103,10 @@
                 @include("partials.footer")
                 
             </div>
-        </div>      
-
+        </div>
+        
+        
+       
         <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -136,7 +159,7 @@
                                     <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
                                 </div>
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
+                                    <a href="#"><i class="ik ik-map-pin"></i><span>tasks</span></a>
                                 </div>
                                 <div class="app-item">
                                     <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>
@@ -169,6 +192,6 @@
             </div>
         </div>
 
-        @include("partials.foot.forms")
+        @include("partials.foot.index")
     </body>
 </html>

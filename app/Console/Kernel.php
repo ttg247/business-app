@@ -16,6 +16,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command(LeadNurturing::class)->daily(); 
+        // Run LeadNurturing command daily
     }
 
     /**
@@ -29,4 +31,9 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
+    protected $commands = [
+        \App\Console\Commands\LeadNurturing::class,
+    ];
+    
 }

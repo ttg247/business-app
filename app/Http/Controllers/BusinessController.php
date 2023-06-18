@@ -28,6 +28,13 @@ class BusinessController extends Controller
         return view('business.index', compact('business', 'services'));
     }
 
+    public function all()
+    {
+        // Retrieve the workhours for the authenticated business
+        $businesses = Business::all();               
+        return view('business.all', compact('businesses'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -16,65 +16,55 @@
                 <!-- page content -->
                 <div class="main-content">
                     <div class="container-fluid">
-                        <div class="page-header">
-                            <div class="row align-items-end">
-                                <div class="col-lg-8">
-                                    <div class="page-header-title">
-                                        <i class="ik ik-users bg-blue"></i>
-                                        <div class="d-inline">
-                                            <h5>Customer Settings</h5>
-                                            <span>Manage customers for your business</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <nav class="breadcrumb-container" aria-label="breadcrumb">
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item">
-                                                <a href="{{ route('dashboard' )}}"><i class="ik ik-home"></i></a>
-                                            </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Customer Settings</li>
-                                        </ol>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="row">
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
+                            <div class="col-md-12">
+                                <div class="card">
                                     <div class="card-body">
-                                        <h6>Create New Customers</h6>
-                                        <p>Make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/create') }}" class="btn btn-primary text-right mr-2">Create</a>
+                                        <table id="advanced_table" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="nosort" width="10">
+                                                        <label class="custom-control custom-checkbox m-0">
+                                                            <input type="checkbox" class="custom-control-input" id="selectall" name="" value="option2">
+                                                            <span class="custom-control-label">&nbsp;</span>
+                                                        </label>
+                                                    </th>
+                                                    <th class="nosort">#</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Date Created</th>
+                                                    <th>Actions</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($tasks as $task)
+                                                <tr>
+                                                    <td>
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input select_all_child" id="" name="" value="option2">
+                                                            <span class="custom-control-label">&nbsp;</span>
+                                                        </label>
+                                                    </td>
+                                                    <td>{{$loop->iteration}}</td>
+                                                    <td>{{ $task->name }}</td>
+                                                    <td>{{ $task->email }}</td>
+                                                    <td>{{ $task->created_at->format('d M Y') }}</td>
+                                                    <td>
+                                                        <a href="{{ url('bookings/'.$task->id.'/edit') }}"><i class="ik ik-edit f-16 mr-12 text-success"></i></a>
+                                                        <a href="{{ url('bookings/delete/'.$task->id) }}"><i class="ik ik-trash-2 f-16 text-red"></i></a>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h6>Manage Existing Customers</h6>
-                                        <p>View and make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/') }}" class="btn btn-primary text-right mr-2">Manage</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h6>Import Customers</h6>
-                                        <p>Import customers in bulk.</p>
-                                        <a href="{{ url('#') }}" class="btn btn-secondary text-right mr-2">Upgrade Plan</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
                         </div>
                     </div>
                 </div>
-                
 
 
                 @include("partials.chat")
@@ -82,7 +72,10 @@
                 @include("partials.footer")
                 
             </div>
-        </div>      
+        </div>
+        
+        
+        
 
         <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
@@ -136,7 +129,7 @@
                                     <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
                                 </div>
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
+                                    <a href="#"><i class="ik ik-map-pin"></i><span>tasks</span></a>
                                 </div>
                                 <div class="app-item">
                                     <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>
@@ -169,6 +162,6 @@
             </div>
         </div>
 
-        @include("partials.foot.forms")
+        @include("partials.foot.index")
     </body>
 </html>

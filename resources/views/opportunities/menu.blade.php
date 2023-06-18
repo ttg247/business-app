@@ -20,10 +20,10 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="ik ik-users bg-blue"></i>
+                                        <i class="ik ik-filter bg-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Customer Settings</h5>
-                                            <span>Manage customers for your business</span>
+                                            <h5>Sales Funnel</h5>
+                                            <span>Streamline sales for your business</span>
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +33,7 @@
                                             <li class="breadcrumb-item">
                                                 <a href="{{ route('dashboard' )}}"><i class="ik ik-home"></i></a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Customer Settings</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Sales Funnel</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -44,9 +44,16 @@
                             <div class="col-sm-12 col-lg-4">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <h6>Create New Customers</h6>
-                                        <p>Make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/create') }}" class="btn btn-primary text-right mr-2">Create</a>
+                                        <h6>Create New Opportunities</h6>
+                                        <a href="{{ url('opportunities/create') }}" class="btn btn-primary text-right mr-2">Create</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h6>Create New Opportunities</h6>
+                                        <a href="{{ url('opportunities/create') }}" class="btn btn-primary text-right mr-2">Create</a>
                                     </div>
                                 </div>
                             </div>
@@ -54,9 +61,8 @@
                             <div class="col-sm-12 col-lg-4">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <h6>Manage Existing Customers</h6>
-                                        <p>View and make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/') }}" class="btn btn-primary text-right mr-2">Manage</a>
+                                        <h6>Manage Opportunities</h6>
+                                        <a href="{{ url('opportunities/') }}" class="btn btn-primary text-right mr-2">Manage</a>
                                     </div>
                                 </div>
                             </div>
@@ -64,13 +70,20 @@
                             <div class="col-sm-12 col-lg-4">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <h6>Import Customers</h6>
-                                        <p>Import customers in bulk.</p>
-                                        <a href="{{ url('#') }}" class="btn btn-secondary text-right mr-2">Upgrade Plan</a>
+                                        <h6>Create New Deals</h6>
+                                        <a href="{{ url('opportunities/') }}" class="btn btn-primary text-right mr-2">Manage</a>
                                     </div>
                                 </div>
                             </div>
                             
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h6>Manage Deals</h6>
+                                        <a href="{{ url('opportunities/') }}" class="btn btn-primary text-right mr-2">Manage</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -136,7 +149,7 @@
                                     <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
                                 </div>
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
+                                    <a href="#"><i class="ik ik-map-pin"></i><span>opportunities</span></a>
                                 </div>
                                 <div class="app-item">
                                     <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>

@@ -23,8 +23,8 @@
                                     <div class="page-header-title">
                                         <i class="ik ik-file-text bg-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Create Customer</h5>
-                                            <span>Create a new customer for your business</span>
+                                            <h5>Create Contact</h5>
+                                            <span>Create a new contact for your business</span>
                                         </div>
                                     </div>
                                 </div>
@@ -35,9 +35,9 @@
                                                 <a href="{{ route('dashboard') }}"><i class="ik ik-home"></i></a>
                                             </li>
                                             <li class="breadcrumb-item">
-                                                <a href="">Customers</a>
+                                                <a href="">contacts</a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Create New Customer</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Create New contact</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -47,26 +47,26 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header"><h3>Use the form below to create a new customer</h3></div>
+                                    <div class="card-header"><h3>Use the form below to create a new contact</h3></div>
                                     <div class="card-body">
-                                        <form action="{{ route('customers.store') }}" class="forms-sample" method="POST">
+                                        <form action="{{ route('contacts.store') }}" class="forms-sample" method="POST">
                                             @csrf
                                             @method('post')
                                             <div class="form-group">
-                                                <label for="customer-name">Name</label>
-                                                <input type="text" class="form-control" id="customer-name" name="name" placeholder="Enter your customer's full name">
+                                                <label for="contact-name">Name</label>
+                                                <input type="text" class="form-control" id="contact-name" name="name" placeholder="Enter your contact's full name">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="customer-email">Email address</label>
-                                                        <input type="email" class="form-control" id="customer-email" name="email" placeholder="Enter your customer's email address">
+                                                        <label for="contact-email">Email address</label>
+                                                        <input type="email" class="form-control" id="contact-email" name="email" placeholder="Enter your contact's email address">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="customer-phone">Phone Number</label>
-                                                        <input type="tel" class="form-control" id="customer-phone" name="phone" placeholder="Enter your customer's phone number">
+                                                        <label for="contact-phone">Phone Number</label>
+                                                        <input type="tel" class="form-control" id="contact-phone" name="phone" placeholder="Enter your contact's phone number">
                                                     </div>
                                                 </div>
                                             </div>

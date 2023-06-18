@@ -1,12 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OpportunityController;
 use App\Http\Controllers\InteractionController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\LeadController;
+use App\Http\Controllers\LeadHandoffController;
+use App\Http\Controllers\PipelineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +67,7 @@ Route::middleware([
         'edit' => 'customers.update',
         'destroy' => 'customers.destroy',
     ]);
-    Route::get('/customers-menu', function () {
+    Route::get('/customers-manager', function () {
         return view('customers.menu');
     });
     
@@ -76,7 +80,7 @@ Route::middleware([
         'destroy' => 'bookings.destroy',
     ]);
     
-    Route::get('/business-menu', function () {
+    Route::get('/business-manager', function () {
         return view('business.menu');
     });
     Route::get('/business-preferences', [App\Http\Controllers\BusinessController::class, 'index'])->name('business-settings'); 
@@ -102,7 +106,7 @@ Route::middleware([
         'edit' => 'reviews.update',
         'destroy' => 'reviews.destroy',
     ]);
-    Route::get('/reviews-menu', [App\Http\Controllers\ReviewController::class, 'menu']);
+    Route::get('/reviews-manager', [App\Http\Controllers\ReviewController::class, 'menu']);
     Route::get('/reviews-pending', [App\Http\Controllers\ReviewController::class, 'pending']);
     
     Route::resource('/services', App\Http\Controllers\ServiceController::class)->names([
@@ -113,7 +117,7 @@ Route::middleware([
         'edit' => 'services.update',
         'destroy' => 'services.destroy',
     ]);
-    Route::get('/services-menu', function () {
+    Route::get('/services-manager', function () {
         return view('services.menu');
     });
 
@@ -151,6 +155,7 @@ Route::middleware([
 Route::middleware('role:admin')->group(function () {
     
     // Contacts routes
+    Route::get('/contacts-manager', [ContactController::class, 'menu'])->name('contacts.menu');
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
     Route::get('/contacts/create', [ContactController::class, 'create'])->name('contacts.create');
     Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
@@ -158,9 +163,20 @@ Route::middleware('role:admin')->group(function () {
     Route::get('/contacts/{id}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
     Route::put('/contacts/{id}', [ContactController::class, 'update'])->name('contacts.update');
     Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
+    Route::delete('/contacts/{id}/email', [ContactController::class, 'email'])->name('contacts.destroy');
     
+    Route::get('/accounts', [BusinessController::class, 'create'])->name('accounts.create');
+    Route::post('/accounts', [BusinessController::class, 'store'])->name('accounts.store');
+    Route::get('/accounts', [BusinessController::class, 'all'])->name('accounts.create');
+
     // Opportunities routes
     Route::get('/opportunities', [OpportunityController::class, 'index'])->name('opportunities.index');
+    Route::get('/funnel', [OpportunityController::class, 'menu']);
+    Route::get('/opportunities/create', [OpportunityController::class, 'create'])->name('opportunities.create');
+    Route::post('/opportunities.store', [OpportunityController::class, 'store'])->name('opportunities.store');
+    Route::get('/opportunities/{opportunity}/edit', [OpportunityController::class, 'edit']);
+    Route::put('/opportunities/{opportunity}', [OpportunityController::class, 'update']);
+    Route::delete('/opportunities/{opportunity}', [OpportunityController::class, 'destroy']);
     // Define other routes for opportunities (create, store, show, edit, update, destroy) as needed
     
     // Interactions routes
@@ -168,6 +184,7 @@ Route::middleware('role:admin')->group(function () {
     // Define other routes for interactions (create, store, show, edit, update, destroy) as needed
     
     // Tasks routes
+    Route::get('/tasks-manager', [TaskController::class, 'menu'])->name('tasks.menu');
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
     // Define other routes for tasks (create, store, show, edit, update, destroy) as needed
         
@@ -175,6 +192,25 @@ Route::middleware('role:admin')->group(function () {
     Route::get('/notes', [NoteController::class, 'index'])->name('notes.index');
     // Define other routes for notes (create, store, show, edit, update, destroy) as needed
     
+    // Lead Handoff routes
+    Route::post('/leads/{lead}/handoff', [LeadHandoffController::class, 'handoff']);
+    
+    Route::get('/leads-manager', [LeadController::class, 'showMenu']);
+    Route::get('/leads', [LeadController::class, 'index']);
+    Route::get('/leads/create', [LeadController::class, 'create']);
+    Route::post('/leads/create', [LeadController::class, 'store']);
+    Route::get('/leads/{lead}/edit', [LeadController::class, 'edit']);
+    Route::put('/leads/{lead}', [LeadController::class, 'update']);
+    Route::delete('/leads/{lead}', [LeadController::class, 'destroy']);
+        
+    //Lead routes
+    Route::get('/leads/score', [LeadController::class, 'scoreLeads']);
+    Route::get('/leads/qualify', [LeadController::class, 'qualifyLeads']);
+
+    Route::get('/widgets/data', function () {
+        return view('widgets.data');
+    })->name('data');
+
     
     // Appointment routes
     Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');

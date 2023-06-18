@@ -20,10 +20,10 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="ik ik-users bg-blue"></i>
+                                        <i class="ik ik-refresh-cw bg-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Customer Settings</h5>
-                                            <span>Manage customers for your business</span>
+                                            <h5>Leads Manager</h5>
+                                            <span>Nurture leads and move them through the sales pipeline.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +33,7 @@
                                             <li class="breadcrumb-item">
                                                 <a href="{{ route('dashboard' )}}"><i class="ik ik-home"></i></a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Customer Settings</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Leads Manager</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -44,9 +44,9 @@
                             <div class="col-sm-12 col-lg-4">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <h6>Create New Customers</h6>
+                                        <h6>Capture New Leads</h6>
                                         <p>Make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/create') }}" class="btn btn-primary text-right mr-2">Create</a>
+                                        <a href="{{ url('leads/create') }}" class="btn btn-primary text-right mr-2">Create Lead</a>
                                     </div>
                                 </div>
                             </div>
@@ -54,9 +54,9 @@
                             <div class="col-sm-12 col-lg-4">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <h6>Manage Existing Customers</h6>
+                                        <h6>Manage Existing Leads</h6>
                                         <p>View and make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/') }}" class="btn btn-primary text-right mr-2">Manage</a>
+                                        <a href="{{ url('leads/') }}" class="btn btn-primary text-right mr-2">Manage Leads</a>
                                     </div>
                                 </div>
                             </div>
@@ -64,9 +64,19 @@
                             <div class="col-sm-12 col-lg-4">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <h6>Import Customers</h6>
-                                        <p>Import customers in bulk.</p>
-                                        <a href="{{ url('#') }}" class="btn btn-secondary text-right mr-2">Upgrade Plan</a>
+                                        <h6>Create Email Campaign</h6>
+                                        <p>Import leads in bulk.</p>
+                                        <a href="{{ url('#') }}" class="btn btn-primary text-right mr-2">Create Campaign</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h6>Track Campaign Performance</h6>
+                                        <p>Import leads in bulk.</p>
+                                        <a href="{{ url('#') }}" class="btn btn-primary text-right mr-2">Track Performance</a>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +146,7 @@
                                     <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
                                 </div>
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
+                                    <a href="#"><i class="ik ik-map-pin"></i><span>leads</span></a>
                                 </div>
                                 <div class="app-item">
                                     <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>

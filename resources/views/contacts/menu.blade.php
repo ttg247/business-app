@@ -20,10 +20,10 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="ik ik-users bg-blue"></i>
+                                        <i class="ik ik-book bg-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Customer Settings</h5>
-                                            <span>Manage customers for your business</span>
+                                            <h5>Contact Manager</h5>
+                                            <span>Manage contacts for your business</span>
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +33,7 @@
                                             <li class="breadcrumb-item">
                                                 <a href="{{ route('dashboard' )}}"><i class="ik ik-home"></i></a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Customer Settings</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Contact Manager</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -44,9 +44,17 @@
                             <div class="col-sm-12 col-lg-4">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <h6>Create New Customers</h6>
-                                        <p>Make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/create') }}" class="btn btn-primary text-right mr-2">Create</a>
+                                        <h6>Capture Contacts</h6>
+                                        <a href="{{ url('contacts/capture') }}" class="btn btn-primary text-right mr-2">Capture Contacts</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h6>Create New Contacts</h6>
+                                        <a href="{{ url('contacts/create') }}" class="btn btn-primary text-right mr-2">Create Contacts</a>
                                     </div>
                                 </div>
                             </div>
@@ -54,9 +62,8 @@
                             <div class="col-sm-12 col-lg-4">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <h6>Manage Existing Customers</h6>
-                                        <p>View and make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/') }}" class="btn btn-primary text-right mr-2">Manage</a>
+                                        <h6>Manage Existing Contacts</h6>
+                                        <a href="{{ url('contacts/') }}" class="btn btn-primary text-right mr-2">Manage Contacts</a>
                                     </div>
                                 </div>
                             </div>
@@ -64,9 +71,17 @@
                             <div class="col-sm-12 col-lg-4">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <h6>Import Customers</h6>
-                                        <p>Import customers in bulk.</p>
-                                        <a href="{{ url('#') }}" class="btn btn-secondary text-right mr-2">Upgrade Plan</a>
+                                        <h6>Create New Accounts</h6>
+                                        <a href="{{ url('accounts/create') }}" class="btn btn-primary text-right mr-2">Create Account</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h6>Manage Existing Accounts</h6>
+                                        <a href="{{ url('accounts') }}" class="btn btn-primary text-right mr-2">Manage Accounts</a>
                                     </div>
                                 </div>
                             </div>

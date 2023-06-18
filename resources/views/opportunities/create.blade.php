@@ -14,16 +14,17 @@
                 @include("partials.sidebar")
 
                 <!-- page content -->
+                
                 <div class="main-content">
                     <div class="container-fluid">
                         <div class="page-header">
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="ik ik-users bg-blue"></i>
+                                        <i class="ik ik-file-text bg-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Customer Settings</h5>
-                                            <span>Manage customers for your business</span>
+                                            <h5>Create opportunity</h5>
+                                            <span>Create a new opportunity for your business</span>
                                         </div>
                                     </div>
                                 </div>
@@ -31,50 +32,53 @@
                                     <nav class="breadcrumb-container" aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item">
-                                                <a href="{{ route('dashboard' )}}"><i class="ik ik-home"></i></a>
+                                                <a href="{{ route('dashboard') }}"><i class="ik ik-home"></i></a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Customer Settings</li>
+                                            <li class="breadcrumb-item">
+                                                <a href="">opportunitys</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">Create New opportunity</li>
                                         </ol>
                                     </nav>
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="row">
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header"><h3>Use the form below to create a new opportunity</h3></div>
                                     <div class="card-body">
-                                        <h6>Create New Customers</h6>
-                                        <p>Make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/create') }}" class="btn btn-primary text-right mr-2">Create</a>
+                                        <form action="{{ route('opportunities.store') }}" class="forms-sample" method="POST">
+                                            @csrf
+                                            @method('post')
+                                            <div class="form-group">
+                                                <label for="opportunity-name">Name</label>
+                                                <input type="text" class="form-control" id="opportunity-name" name="name" placeholder="Enter your opportunity's full name">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="opportunity-email">Email address</label>
+                                                        <input type="email" class="form-control" id="opportunity-email" name="email" placeholder="Enter your opportunity's email address">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="opportunity-phone">Phone Number</label>
+                                                        <input type="tel" class="form-control" id="opportunity-phone" name="phone" placeholder="Enter your opportunity's phone number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                            <button class="btn btn-light">Cancel</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h6>Manage Existing Customers</h6>
-                                        <p>View and make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('customers/') }}" class="btn btn-primary text-right mr-2">Manage</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h6>Import Customers</h6>
-                                        <p>Import customers in bulk.</p>
-                                        <a href="{{ url('#') }}" class="btn btn-secondary text-right mr-2">Upgrade Plan</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
                         </div>
                     </div>
                 </div>
-                
 
 
                 @include("partials.chat")
@@ -82,8 +86,10 @@
                 @include("partials.footer")
                 
             </div>
-        </div>      
-
+        </div>
+        
+        
+       
         <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -136,7 +142,7 @@
                                     <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
                                 </div>
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
+                                    <a href="#"><i class="ik ik-map-pin"></i><span>opportunitys</span></a>
                                 </div>
                                 <div class="app-item">
                                     <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>
@@ -169,6 +175,6 @@
             </div>
         </div>
 
-        @include("partials.foot.forms")
+        @include("partials.foot.index")
     </body>
 </html>

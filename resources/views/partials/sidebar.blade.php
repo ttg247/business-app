@@ -13,39 +13,33 @@
         <div class="nav-container">
             <nav id="main-menu-navigation" class="navigation-main">
 
-                @if (!Auth::user()->hasRole('admin') )
-                   <div class="nav-lavel">Navigation</div>
+                
+                   <div class="nav-lavel">Website</div>
                    <div class="nav-item {{ ( request()  -> is('/') ) ? 'active': ''  }}">
-                        a href="{{ url('/') }}"><i class="ik ik-bar-chart"></i><span>Dashboard</span></a>
+                        <a href="{{ url('/') }}"><i class="ik ik-bar-chart"></i><span>Dashboard</span></a>
                    </div>
                    <div class="nav-item {{ ( request()  -> is('bookings*') ) ? 'active': ''  }}">
-                        a href="{{ url('/bookings') }}"><i class="ik ik-clock"></i><span>Bookings</span> </a>
+                        <a href="{{ url('/bookings') }}"><i class="ik ik-clock"></i><span>Bookings</span> </a>
                    </div>
                    <div class="nav-item {{ ( request()  -> is('customers*') ) ? 'active': ''  }}">
-                        a href="{{ url('/customers-menu') }}"><i class="ik ik-users"></i><span>Customers</span></a>
+                        <a href="{{ url('/customers-manager') }}"><i class="ik ik-users"></i><span>Customers</span></a>
                    </div>
                    <div class="nav-item {{ ( request()  -> is('reviews*') ) ? 'active': ''  }}">
-                        a href="{{ url('/reviews-menu') }}"><i class="ik ik-star"></i><span>Reviews</span> </a>
+                        <a href="{{ url('/reviews-manager') }}"><i class="ik ik-star"></i><span>Reviews</span> </a>
                    </div>
                    <div class="nav-item {{ ( request()  -> is('business*') || request() -> is('services*') ) ? 'active': ''  }}">
-                        a href="{{ url('/business-menu') }}"><i class="ik ik-settings"></i><span>Business</span> </a>
+                       <a href="{{ url('/business-manager') }}"><i class="ik ik-settings"></i><span>Preferences</span> </a>
                    </div>
-                @else
-                    <div class="nav-lavel">Navigation</div>
-                    <div class="nav-item {{ ( request()  -> is('/') ) ? 'active': ''  }}">
-                        <a href="{{ url('/') }}"><i class="ik ik-bar-chart"></i><span>Dashboard</span></a>
+                @if (Auth::user()->hasRole('admin') )
+                    <div class="nav-lavel">CRM</div>
+                    <div class="nav-item {{ ( request()->is('leads*') ) ? 'active': ''  }}">
+                        <a href="{{ url('/leads-manager') }}"><i class="ik ik-refresh-cw"></i><span>Leads</span></a>
                     </div>
-                    <div class="nav-item {{ ( request()  -> is('customers*') ) ? 'active': ''  }}">
-                        <a href="{{ url('/customers-menu') }}"><i class="ik ik-refresh-cw"></i><span>Conversions</span></a>
+                    <div class="nav-item {{ ( request()->is('funnel*') || request()->is('opportunities*') ) ? 'active': ''  }}">
+                        <a href="{{ url('/funnel') }}"><i class="ik ik-filter"></i><span>Funnel</span></a>
                     </div>
-                    <div class="nav-item {{ ( request()  -> is('reviews*') ) ? 'active': ''  }}">
-                        <a href="{{ url('/reviews-menu') }}"><i class="ik ik-star"></i><span>Reviews</span> </a>
-                    </div>
-                    <div class="nav-item {{ ( request()  -> is('bookings*') ) ? 'active': ''  }}">
-                        <a href="{{ url('/customers-menu') }}"><i class="ik ik-book"></i><span>Contacts</span> </a>
-                    </div>
-                    <div class="nav-item {{ ( request()  -> is('business*') || request()  -> is('services*') ) ? 'active': ''  }}">
-                        <a href="{{ url('/business-menu') }}"><i class="ik ik-settings"></i><span>Business</span> </a>
+                    <div class="nav-item {{ ( request()->is('contacts*') || request()->is('organisation') || request()->is('organisations') ) ? 'active': ''  }}">
+                        <a href="{{ url('/contacts-manager') }}"><i class="ik ik-book"></i><span>Contacts</span> </a>
                     </div>
                 @endif
 
