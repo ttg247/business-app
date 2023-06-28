@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OpportunityController;
 use App\Http\Controllers\InteractionController;
@@ -27,13 +32,13 @@ use App\Http\Controllers\PipelineController;
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
-Route::post('/login', [App\Http\Controllers\UserController::class, 'login'])->name('login');
-Route::post('/register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
-Route::post('/create-business', [App\Http\Controllers\BusinessController::class, 'store'])->name('business');
-Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::post('/create-business', [AccountController::class, 'store'])->name('business');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 //invitation link routes
-Route::post('/invite', [App\Http\Controllers\InvitationController::class, 'check'])->name('invite_check');
+Route::post('/invite', [InvitationController::class, 'check'])->name('invite_check');
 Route::get('/invite', function () {
     return view('auth.invite');
 })->name('invite');
@@ -59,7 +64,7 @@ Route::middleware([
     
     Route::get('/', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
-    Route::resource('/customers', App\Http\Controllers\CustomerController::class)->names([
+    Route::resource('/customers', CustomerController::class)->names([
         'index' => 'customers.index',
         'create' => 'customers.create',
         'store' => 'customers.store',
@@ -71,7 +76,7 @@ Route::middleware([
         return view('customers.menu');
     });
     
-    Route::resource('/bookings', App\Http\Controllers\BookingController::class)->names([
+    Route::resource('/bookings', BookingController::class)->names([
         'index' => 'bookings',
         'create' => 'bookings.create',
         'store' => 'bookings.store',
@@ -83,13 +88,13 @@ Route::middleware([
     Route::get('/business-manager', function () {
         return view('business.menu');
     });
-    Route::get('/business-preferences', [App\Http\Controllers\BusinessController::class, 'index'])->name('business-settings'); 
+    Route::get('/business-preferences', [AccountController::class, 'index'])->name('business-settings'); 
 
-    Route::get('/business-hours', [App\Http\Controllers\WorkhourController::class, 'index']); 
-    Route::patch('/business-hours', [App\Http\Controllers\WorkhourController::class, 'store'])->name('workhours');  
-    Route::patch('/business-update', [App\Http\Controllers\BusinessController::class, 'update'])->name('update_business_settings');  
+    Route::get('/business-hours', [WorkhourController::class, 'index']); 
+    Route::patch('/business-hours', [WorkhourController::class, 'store'])->name('workhours');  
+    Route::patch('/business-update', [AccountController::class, 'update'])->name('update_business_settings');  
     
-    Route::resource('/business', App\Http\Controllers\BusinessController::class)->names([
+    Route::resource('/business', AccountController::class)->names([
         'index' => 'business.preferences',
         'create' => 'business.create',
         'store' => 'business.store',
@@ -98,7 +103,7 @@ Route::middleware([
         'destroy' => 'business.destroy',
     ]);
 
-    Route::resource('/reviews', App\Http\Controllers\ReviewController::class)->names([
+    Route::resource('/reviews', ReviewController::class)->names([
         'index' => 'reviews',
         'create' => 'reviews.create',
         'store' => 'reviews.store',
@@ -106,10 +111,10 @@ Route::middleware([
         'edit' => 'reviews.update',
         'destroy' => 'reviews.destroy',
     ]);
-    Route::get('/reviews-manager', [App\Http\Controllers\ReviewController::class, 'menu']);
-    Route::get('/reviews-pending', [App\Http\Controllers\ReviewController::class, 'pending']);
+    Route::get('/reviews-manager', [ReviewController::class, 'menu']);
+    Route::get('/reviews-pending', [ReviewController::class, 'pending']);
     
-    Route::resource('/services', App\Http\Controllers\ServiceController::class)->names([
+    Route::resource('/services', ServiceController::class)->names([
         'index' => 'services',
         'create' => 'services.create',
         'store' => 'services.store',
@@ -121,7 +126,7 @@ Route::middleware([
         return view('services.menu');
     });
 
-    Route::resource('/settings', App\Http\Controllers\ReviewController::class)->names([
+    Route::resource('/settings', ReviewController::class)->names([
         'index' => 'settings',
         'create' => 'settings.create',
         'store' => 'settings.store',
@@ -165,9 +170,12 @@ Route::middleware('role:admin')->group(function () {
     Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
     Route::delete('/contacts/{id}/email', [ContactController::class, 'email'])->name('contacts.destroy');
     
-    Route::get('/accounts', [BusinessController::class, 'create'])->name('accounts.create');
-    Route::post('/accounts', [BusinessController::class, 'store'])->name('accounts.store');
-    Route::get('/accounts', [BusinessController::class, 'all'])->name('accounts.create');
+    Route::get('/accounts-manager', [AccountController::class, 'menu'])->name('accounts_manager');
+    Route::get('/accounts/create', [AccountController::class, 'create'])->name('accounts.create');
+    Route::post('/accounts', [AccountController::class, 'store'])->name('accounts.store');
+    Route::get('/accounts', [AccountController::class, 'all'])->name('accounts_list');
+    Route::put('/accounts/{id}', [AccountController::class, 'update_account'])->name('accounts.update');
+    Route::get('/accounts/{id}/edit', [AccountController::class, 'edit'])->name('accounts.edit');
 
     // Opportunities routes
     Route::get('/opportunities', [OpportunityController::class, 'index'])->name('opportunities.index');
@@ -196,11 +204,11 @@ Route::middleware('role:admin')->group(function () {
     Route::post('/leads/{lead}/handoff', [LeadHandoffController::class, 'handoff']);
     
     Route::get('/leads-manager', [LeadController::class, 'showMenu']);
-    Route::get('/leads', [LeadController::class, 'index']);
+    Route::get('/leads', [LeadController::class, 'index'])->name('allLeads');
     Route::get('/leads/create', [LeadController::class, 'create']);
-    Route::post('/leads/create', [LeadController::class, 'store']);
+    Route::post('/leads', [LeadController::class, 'store'])->name('storeLeads');
     Route::get('/leads/{lead}/edit', [LeadController::class, 'edit']);
-    Route::put('/leads/{lead}', [LeadController::class, 'update']);
+    Route::put('/leads/{lead}', [LeadController::class, 'update'])->name('leads_update');
     Route::delete('/leads/{lead}', [LeadController::class, 'destroy']);
         
     //Lead routes

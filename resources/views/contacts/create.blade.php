@@ -21,7 +21,7 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="ik ik-file-text bg-blue"></i>
+                                        <i class="ik ik-user bg-blue"></i>
                                         <div class="d-inline">
                                             <h5>Create Contact</h5>
                                             <span>Create a new contact for your business</span>
@@ -64,11 +64,31 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div     class="form-group">
+                                                    <div class="form-group">
                                                         <label for="contact-phone">Phone Number</label>
                                                         <input type="tel" class="form-control" id="contact-phone" name="phone" placeholder="Enter your contact's phone number">
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="contact-name">Street</label>
+                                                <input type="text" class="form-control" id="contact-name" name="street" placeholder="Enter your contact's full name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="contact-name">Postal Code</label>
+                                                <input type="text" class="form-control" id="contact-name" name="postal_code" placeholder="Enter your contact's full name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="contact-name">City</label>
+                                                <input type="text" class="form-control" id="contact-name" name="city" placeholder="Enter your contact's full name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="contact-name">State</label>
+                                                <input type="text" class="form-control" id="contact-name" name="state" placeholder="Enter your contact's full name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="contact-name">Country</label>
+                                                <input type="text" class="form-control" id="contact-name" name="country" placeholder="Enter your contact's full name">
                                             </div>
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                             <button class="btn btn-light">Cancel</button>

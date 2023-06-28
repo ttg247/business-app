@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
-use App\Models\Business;
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +18,7 @@ class ReviewController extends Controller
     public function menu()
     {
         $clientId = Auth::id();
-        $businessId = Business::where('users_id', $clientId)
+        $businessId = Account::where('users_id', $clientId)
                     ->value('id');
         return view('reviews.menu', compact('businessId'));
     }
@@ -33,7 +33,7 @@ class ReviewController extends Controller
         $user = User::where('id', Auth::id())->firstOrFail();        
         $user_business_id = $user -> business_id;         
         $reviews = Review::where('business_id', $user_business_id)->get();
-        $businessId = Business::where('id', $user_business_id)->value('id');
+        $businessId = Account::where('id', $user_business_id)->value('id');
         return view('reviews.index', compact('businessId', 'reviews'));
     }
 

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Client;
 use App\Models\User;
-use App\Models\Business;
+use App\Models\Account;
 
 class BookingController extends Controller
 {
@@ -38,8 +38,8 @@ class BookingController extends Controller
             'finish_time' => 'required',
             'title' => 'nullable',
             'client_id' => 'required',
-            'employee_id' => 'required',
-            'created_at' => 'required'
+            'employee_id' => 'sometimes|required',
+            'created_at' => 'sometimes|required'
         ]);
 
         $booking = Booking::create($validated);

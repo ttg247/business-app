@@ -32,14 +32,17 @@
                    </div>
                 @if (Auth::user()->hasRole('admin') )
                     <div class="nav-lavel">CRM</div>
+                    <div class="nav-item {{ ( request()->is('accounts*') ) ? 'active': ''  }}">
+                        <a href="{{ url('/accounts-manager') }}"><i class="ik ik-folder"></i><span>Accounts</span> </a>
+                    </div>
+                    <div class="nav-item {{ ( request()->is('contacts*') ) ? 'active': ''  }}">
+                        <a href="{{ url('/contacts-manager') }}"><i class="ik ik-book"></i><span>Contacts</span> </a>
+                    </div>
                     <div class="nav-item {{ ( request()->is('leads*') ) ? 'active': ''  }}">
                         <a href="{{ url('/leads-manager') }}"><i class="ik ik-refresh-cw"></i><span>Leads</span></a>
                     </div>
-                    <div class="nav-item {{ ( request()->is('funnel*') || request()->is('opportunities*') ) ? 'active': ''  }}">
+                    <div class="nav-item {{ ( request()->is('funnel*') || request()->is('opportunities*')) ? 'active': ''  }}">
                         <a href="{{ url('/funnel') }}"><i class="ik ik-filter"></i><span>Funnel</span></a>
-                    </div>
-                    <div class="nav-item {{ ( request()->is('contacts*') || request()->is('organisation') || request()->is('organisations') ) ? 'active': ''  }}">
-                        <a href="{{ url('/contacts-manager') }}"><i class="ik ik-book"></i><span>Contacts</span> </a>
                     </div>
                 @endif
 

@@ -3,34 +3,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Lead;
 use App\Models\Contact;
+use App\Models\Account;
 
 class LeadController extends Controller
 {
     public function index()
     {
         $leads = Lead::all();
-
-        return view('leads.index', compact('leads'));
+        $accounts = Account::all();        
+        $contacts = Contact::all();
+        return view('leads.index', compact('leads', 'contacts', 'accounts'));
     }
 
     public function create()
     {
-        return view('leads.create');
+        $accounts = Account::all();
+        $contacts = Contact::all();
+        return view('leads.create', compact('accounts', 'contacts'));
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'contact_id' => 'required',
-            'status' => 'required',
-            'score' => 'required',
-        ]);
 
-        $lead = Lead::create($validatedData);
+        $lead = new Lead;
+        $lead->contact_id = $request->input('contact');
+        $lead->account_id = $request->input('account');
+        $lead->user_id = Auth::id();
+        $lead->job_title = $request->input('job_title');
+        $lead->department = $request->input('department');
+        $lead->status = $request->input('status');
+        $lead->source = $request->input('source');
+        $lead->source_description = $request->input('source_description');
+        $lead->referred_by = $request->input('referred_by');
+        $lead->save();
 
-        return redirect()->route('leads.show', $lead->id)->with('success', 'lead created successfully.');
+        return redirect()->route('allLeads')->with('success', 'lead created successfully.');
     }
 
     public function show($id)
@@ -43,22 +53,28 @@ class LeadController extends Controller
     public function edit($id)
     {
         $lead = Lead::findOrFail($id);
+        $accounts = Account::all();        
+        $contacts = Contact::all();
 
-        return view('leads.edit', compact('lead'));
+        return view('leads.edit', compact('lead', 'accounts', 'contacts'));
     }
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'contact_id' => 'required',
-            'status' => 'required',
-            'score' => 'required',
-        ]);
 
         $lead = Lead::findOrFail($id);
-        $lead->update($validatedData);
+        $lead->update([
+            $lead->contact_id = $request->input('contact'),
+            $lead->account_id = $request->input('account'),
+            $lead->job_title = $request->input('job_title'),
+            $lead->department = $request->input('department'),
+            $lead->status = $request->input('status'),
+            $lead->source = $request->input('source'),
+            $lead->source_description = $request->input('source_description'),
+            $lead->referred_by = $request->input('referred_by'),
+        ]);
 
-        return redirect()->route('leads.show', $lead->id)->with('success', 'lead updated successfully.');
+        return redirect()->route('allLeads', $lead->id)->with('success', 'lead updated successfully.');
     }
 
     public function destroy($id)

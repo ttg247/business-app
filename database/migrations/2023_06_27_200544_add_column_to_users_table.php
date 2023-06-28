@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLeadUserTable extends Migration
+class AddColumnToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateLeadUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('lead_user', function (Blueprint $table) {
-            $table->id();
-            $table->foreign('user_id');
-            $table->foreign('lead_id');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('api_token', 80)->unique()->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateLeadUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lead_user');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('api_token');
+        });
     }
 }

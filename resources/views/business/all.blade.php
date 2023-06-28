@@ -16,6 +16,30 @@
                 <!-- page content -->
                 <div class="main-content">
                     <div class="container-fluid">
+                    <div class="page-header">
+                            <div class="row align-items-end">
+                                <div class="col-lg-8">
+                                    <div class="page-header-title">
+                                        <i class="ik ik-folder bg-blue"></i>
+                                        <div class="d-inline">
+                                            <h5>Accounts</h5>
+                                            <span>All accounts in the CRM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <nav class="breadcrumb-container" aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{{ route('dashboard') }}"><i class="ik ik-home"></i></a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">All Accounts</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -32,7 +56,9 @@
                                                     <th class="nosort">#</th>
                                                     <th>Name</th>
                                                     <th>Email</th>
-                                                    <th>Date Created</th>
+                                                    <th>Website</th>
+                                                    <th>City</th>
+                                                    <th>Invitation</th>
                                                     <th>Actions</th>
                                                     <th></th>
                                                 </tr>
@@ -49,10 +75,12 @@
                                                     <td>{{$loop->iteration}}</td>
                                                     <td>{{ $business->name ?? '' }}</td>
                                                     <td>{{ $business->email }}</td>
-                                                    <td>{{ ($business->created_at) ? $business->created_at->format('d M Y') : ''  }}</td>
+                                                    <td>{{ $business->website }}</td>
+                                                    <td>{{ $business->address->city ?? '' }}</td>
+                                                    <td>{{ $business->invite_link ?? '' }}</td>
                                                     <td>
-                                                        <a href="{{ url('bookings/'.$business->id.'/edit') }}"><i class="ik ik-edit f-16 mr-12 text-success"></i></a>
-                                                        <a href="{{ url('bookings/delete/'.$business->id) }}"><i class="ik ik-trash-2 f-16 text-red"></i></a>
+                                                        <a href="{{ url('accounts/'.$business->id.'/edit') }}"><i class="ik ik-edit f-16 mr-12 text-success"></i></a>
+                                                        <a href="{{ url('accounts/delete/'.$business->id) }}"><i class="ik ik-trash-2 f-16 text-red"></i></a>
                                                     </td>
                                                     <td></td>
                                                 </tr>

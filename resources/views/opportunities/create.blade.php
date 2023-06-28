@@ -21,7 +21,7 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="ik ik-file-text bg-blue"></i>
+                                        <i class="ik ik-filter bg-blue"></i>
                                         <div class="d-inline">
                                             <h5>Create opportunity</h5>
                                             <span>Create a new opportunity for your business</span>
@@ -56,19 +56,51 @@
                                                 <label for="opportunity-name">Name</label>
                                                 <input type="text" class="form-control" id="opportunity-name" name="name" placeholder="Enter your opportunity's full name">
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="opportunity-email">Email address</label>
-                                                        <input type="email" class="form-control" id="opportunity-email" name="email" placeholder="Enter your opportunity's email address">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="opportunity-phone">Phone Number</label>
-                                                        <input type="tel" class="form-control" id="opportunity-phone" name="phone" placeholder="Enter your opportunity's phone number">
-                                                    </div>
-                                                </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="opportunity-name">Amount</label>
+                                                <input type="text" class="form-control" id="opportunity-name" name="name" placeholder="Enter your opportunity's full name">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="opportunity-name">Sales Stage</label>
+                                                <input type="text" class="form-control" id="opportunity-name" name="name" placeholder="Enter your opportunity's full name">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="opportunity-name">Probability</label>
+                                                <input type="text" class="form-control" id="opportunity-name" name="name" placeholder="Enter your opportunity's full name">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="opportunity-name">Next Step</label>
+                                                <input type="text" class="form-control" id="opportunity-name" name="name" placeholder="Enter your opportunity's full name">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="opportunity-name">Description</label>
+                                                <input type="text" class="form-control" id="opportunity-name" name="name" placeholder="Enter your opportunity's full name">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="opportunity-name">Assigned To</label>
+                                                <input type="text" class="form-control" id="opportunity-name" name="name" placeholder="Enter your opportunity's full name">
+                                            </div>
+
+                                            
+                                            <div class="form-group">
+                                                <label for="opportunity-name">Account</label>
+                                                <input type="text" class="form-control" id="opportunity-name" name="name" placeholder="Enter your opportunity's full name">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="opportunity-name">Lead</label>
+                                                <input type="text" class="form-control" id="opportunity-name" name="name" placeholder="Enter your opportunity's full name">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="opportunity-name">Expected Close Date</label>
+                                                <input type="text" class="form-control" id="opportunity-name" name="name" placeholder="Enter your opportunity's full name">
                                             </div>
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                             <button class="btn btn-light">Cancel</button>

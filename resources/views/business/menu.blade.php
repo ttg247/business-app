@@ -20,10 +20,10 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="ik ik-settings bg-blue"></i>
+                                        <i class="ik ik-folder bg-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Business Settings</h5>
-                                            <span>Manage the settings for your business</span>
+                                            <h5>Account Manager</h5>
+                                            <span>Manage business accounts</span>
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +33,7 @@
                                             <li class="breadcrumb-item">
                                                 <a href="{{ route('dashboard' )}}"><i class="ik ik-home"></i></a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Business Settings</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Account Manager</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -44,9 +44,9 @@
                             <div class="col-sm-12 col-lg-4">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <h6>Create New Service</h6>
+                                        <h6>Create New Account</h6>
                                         <p>Make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ route('services.create') }}" class="btn btn-primary text-right mr-2">Create</a>
+                                        <a href="{{ url('accounts/create') }}" class="btn btn-primary text-right mr-2">Create</a>
                                     </div>
                                 </div>
                             </div>
@@ -54,34 +54,13 @@
                             <div class="col-sm-12 col-lg-4">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <h6>Manage Service</h6>
+                                        <h6>Manage Accounts</h6>
                                         <p>View and make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('services') }}" class="btn btn-primary text-right mr-2">Manage</a>
+                                        <a href="{{ route('accounts_list') }}" class="btn btn-primary text-right mr-2">Manage</a>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h6>Manage Workhours</h6>
-                                        <p>Approve new customer reviews and get them listed on your website</p>
-                                        <a href="{{url('/business-hours')}}" class="btn btn-primary text-right mr-2">Manage</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h6>Manage Business Preferences</h6>
-                                        <p>View and make changes to your name, email, phone number, and more </p>
-                                        <a href="{{ url('business-preferences') }}" class="btn btn-primary text-right mr-2">Manage</a>
-                                    </div>
-                                </div>
-                            </div>
-
-
                         </div>
                     </div>
                 </div>

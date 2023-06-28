@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
-use App\Models\Business;
+use App\Models\Account;
 
 
 class UserController extends Controller
@@ -15,7 +15,7 @@ class UserController extends Controller
     //authenticate customer invite link and return the business
     public function authenticate_invite_link(Request $request){
         $invite_link = $request -> input('invite_link');
-        $customer_business = Business::where('users_link', $invite_link)->first();
+        $customer_business = Account::where('users_link', $invite_link)->first();
         
         if ($customer_business !== null){
             
@@ -40,6 +40,8 @@ class UserController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        // Generate a unique token
+        $token = Str::random(80);        
 
         // Create the new user
         $user = User::create([
@@ -47,13 +49,14 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'business_id' => $request->input('business'),
+            'api_token' => hash('sha256', $token),
         ]);
 
         
         // Log in the new user
         auth()->login($user);
 
-        $business = Business::find($request->input('business'));
+        $business = Account::find($request->input('business'));
         $business->users_id = Auth::id();
         $business->save();
 
@@ -70,7 +73,12 @@ class UserController extends Controller
         ]);
     
         if (Auth::attempt($credentials, $request->filled('remember'))) {
-            $request->session()->regenerate();    
+            $request->session()->regenerate();  
+            $user = Auth::user();
+            $users_account_id = $user->business_id;
+            $account = Account::findOrFail($users_account_id);
+            $website = $account->website;
+            $request->session()->put('website', $website);
             return redirect()->intended('/');
         }
     

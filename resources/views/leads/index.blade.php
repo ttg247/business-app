@@ -30,15 +30,19 @@
                                                         </label>
                                                     </th>
                                                     <th class="nosort">#</th>
+                                                    <th>Account</th>
                                                     <th>Name</th>
+                                                    <th>Status</th>
                                                     <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>Creator</th>
                                                     <th>Date Created</th>
                                                     <th>Actions</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($contacts as $contact)
+                                                @foreach($leads as $lead)
                                                 <tr>
                                                     <td>
                                                         <label class="custom-control custom-checkbox">
@@ -47,12 +51,16 @@
                                                         </label>
                                                     </td>
                                                     <td>{{$loop->iteration}}</td>
-                                                    <td>{{ $contact->name }}</td>
-                                                    <td>{{ $contact->email }}</td>
-                                                    <td>{{ $contact->created_at->format('d M Y') }}</td>
+                                                    <td>{{ $lead->account->name }}</td>
+                                                    <td>{{ $lead->contact->name }}</td>
+                                                    <td><label class="badge badge-success">{{ $lead->status }}</label></td>
+                                                    <td>{{ $lead->contact->email }}</td>
+                                                    <td>{{ $lead->contact->phone }}</td>
+                                                    <td>{{ $lead->user->name ?? ''}}</td>
+                                                    <td>{{ ($lead->created_at) ? $lead->created_at->format('d M Y') : ''  }}</td>
                                                     <td>
-                                                        <a href="{{ url('bookings/'.$contact->id.'/edit') }}"><i class="ik ik-edit f-16 mr-12 text-success"></i></a>
-                                                        <a href="{{ url('bookings/delete/'.$contact->id) }}"><i class="ik ik-trash-2 f-16 text-red"></i></a>
+                                                        <a href="{{ url('leads/'.$lead->id.'/edit') }}"><i class="ik ik-edit f-16 mr-12 text-success"></i></a>
+                                                        <a href="{{ url('leads/delete/'.$lead->id) }}"><i class="ik ik-trash-2 f-16 text-red"></i></a>
                                                     </td>
                                                     <td></td>
                                                 </tr>

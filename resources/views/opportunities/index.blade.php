@@ -31,7 +31,10 @@
                                                     </th>
                                                     <th class="nosort">#</th>
                                                     <th>Name</th>
-                                                    <th>Email</th>
+                                                    <th>Account</th>
+                                                    <th>Stage</th>
+                                                    <th>Amount</th>
+                                                    <th>Close</th>
                                                     <th>Date Created</th>
                                                     <th>Actions</th>
                                                     <th></th>

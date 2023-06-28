@@ -16,59 +16,76 @@
                 <!-- page content -->
                 <div class="main-content">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <table id="advanced_table" class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="nosort" width="10">
-                                                        <label class="custom-control custom-checkbox m-0">
-                                                            <input type="checkbox" class="custom-control-input" id="selectall" name="" value="option2">
-                                                            <span class="custom-control-label">&nbsp;</span>
-                                                        </label>
-                                                    </th>
-                                                    <th class="nosort">#</th>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Phone</th>
-                                                    <th>City</th>
-                                                    <th>Date Created</th>
-                                                    <th>Actions</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach($contacts as $contact)
-                                                <tr>
-                                                    <td>
-                                                        <label class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input select_all_child" id="" name="" value="option2">
-                                                            <span class="custom-control-label">&nbsp;</span>
-                                                        </label>
-                                                    </td>
-                                                    <td>{{$loop->iteration}}</td>
-                                                    <td>{{ $contact->name }}</td>
-                                                    <td>{{ $contact->email }}</td>
-                                                    <td>{{ $contact->phone }}</td>
-                                                    <td>{{ $contact->address->city ?? '' }}</td>
-                                                    <td>{{ ($contact->created_at) ? $contact->created_at->format('d M Y') : ''  }}</td>
-                                                    <td>
-                                                        <a href="{{ url('contacts/'.$contact->id.'/edit') }}"><i class="ik ik-edit f-16 mr-12 text-success"></i></a>
-                                                        <a href="{{ url('contacts/delete/'.$contact->id) }}"><i class="ik ik-trash-2 f-16 text-red"></i></a>
-                                                    </td>
-                                                    <td></td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                        <div class="page-header">
+                            <div class="row align-items-end">
+                                <div class="col-lg-8">
+                                    <div class="page-header-title">
+                                        <i class="ik ik-settings bg-blue"></i>
+                                        <div class="d-inline">
+                                            <h5>Business Settings</h5>
+                                            <span>Manage the settings for your business</span>
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <nav class="breadcrumb-container" aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{{ route('dashboard' )}}"><i class="ik ik-home"></i></a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">Business Settings</li>
+                                        </ol>
+                                    </nav>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h6>Create New Service</h6>
+                                        <p>Make changes to your name, email, phone number, and more </p>
+                                        <a href="{{ route('services.create') }}" class="btn btn-primary text-right mr-2">Create</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h6>Manage Service</h6>
+                                        <p>View and make changes to your name, email, phone number, and more </p>
+                                        <a href="{{ url('services') }}" class="btn btn-primary text-right mr-2">Manage</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h6>Manage Workhours</h6>
+                                        <p>Approve new customer reviews and get them listed on your website</p>
+                                        <a href="{{url('/business-hours')}}" class="btn btn-primary text-right mr-2">Manage</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h6>Manage Business Preferences</h6>
+                                        <p>View and make changes to your name, email, phone number, and more </p>
+                                        <a href="{{ url('business-preferences') }}" class="btn btn-primary text-right mr-2">Manage</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
+                
 
 
                 @include("partials.chat")
@@ -76,10 +93,7 @@
                 @include("partials.footer")
                 
             </div>
-        </div>
-        
-        
-        
+        </div>      
 
         <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
@@ -166,6 +180,6 @@
             </div>
         </div>
 
-        @include("partials.foot.index")
+        @include("partials.foot.forms")
     </body>
 </html>

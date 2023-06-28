@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Customer;
 use App\Models\Booking;
-use App\Models\Business;
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +17,7 @@ class DashboardController extends Controller
         // retrieve the business with the given ID
         $user = User::where('id', Auth::id())->firstOrFail();        
         $user_business_id = $user -> business_id;
-        $business = Business::where('id', $user_business_id)->firstOrFail();  
+        $business = Account::where('id', $user_business_id)->firstOrFail();  
 
         // count the number of customers for the business
         $customerCount = Customer::where('business_id', $business->id)->count();

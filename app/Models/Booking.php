@@ -24,6 +24,6 @@ class Booking extends Model
 
     public function business(): BelongsTo
     {
-        return $this->belongsTo(Business::class);
+        return $this->belongsTo(Account::class);
     }
 }

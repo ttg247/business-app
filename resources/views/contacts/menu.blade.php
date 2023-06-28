@@ -67,25 +67,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h6>Create New Accounts</h6>
-                                        <a href="{{ url('accounts/create') }}" class="btn btn-primary text-right mr-2">Create Account</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-sm-12 col-lg-4">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h6>Manage Existing Accounts</h6>
-                                        <a href="{{ url('accounts') }}" class="btn btn-primary text-right mr-2">Manage Accounts</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
+                                                        
                         </div>
                     </div>
                 </div>

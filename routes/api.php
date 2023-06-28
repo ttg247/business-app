@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware(['auth.token'])->group(function () {
+    // Protected routes for authenticated users with a valid token    
+    Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+});
+
